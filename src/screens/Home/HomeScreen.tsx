@@ -7,6 +7,7 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -153,7 +154,7 @@ const HomeScreen = () => {
   });
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       {/* Background bubbles */}
       <LiquidBubble
         style={{
@@ -243,7 +244,7 @@ const HomeScreen = () => {
           </GlassCard>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

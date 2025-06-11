@@ -5,13 +5,13 @@ import HomeScreen from '../screens/Home/HomeScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
 import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import {BlurView} from '@react-native-community/blur';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   withSpring,
   withDelay,
-  runOnJS,
 } from 'react-native-reanimated';
 import {colors, blurIntensity, shadows} from '../theme/liquidGlass';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
@@ -85,6 +85,7 @@ const TabBarIcon = ({
 
 // Custom tab bar with glass effect
 const GlassTabBar = ({state, descriptors, navigation}: any) => {
+  const insets = useSafeAreaInsets();
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
   if (focusedOptions.tabBarVisible === false) {
@@ -92,7 +93,7 @@ const GlassTabBar = ({state, descriptors, navigation}: any) => {
   }
 
   return (
-    <View style={styles.tabBarContainer}>
+    <View style={[styles.tabBarContainer, {height: 80 + insets.bottom}]}>
       {/* Glass effect background */}
       {Platform.OS === 'ios' ? (
         <BlurView
@@ -113,7 +114,7 @@ const GlassTabBar = ({state, descriptors, navigation}: any) => {
       <View style={styles.divider} />
 
       {/* Tab items */}
-      <View style={styles.tabBarContent}>
+      <View style={[styles.tabBarContent, {paddingBottom: insets.bottom}]}>
         {state.routes.map((route: any, index: number) => {
           const {options} = descriptors[route.key];
           const label = route.name;
@@ -184,8 +185,7 @@ const styles = StyleSheet.create({
   },
   tabBarContent: {
     flexDirection: 'row',
-    height: '100%',
-    paddingBottom: Platform.OS === 'ios' ? 20 : 0, // Account for iOS bottom safe area
+    height: 80, // Fixed height for the actual tab content
   },
   tabButton: {
     flex: 1,
