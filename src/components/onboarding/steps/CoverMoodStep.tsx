@@ -127,8 +127,8 @@ const CoverMoodStep: React.FC<OnboardingStepProps> = ({
 
           <Text style={styles.title}>Choose Your Vibe</Text>
           <Text style={styles.subtitle}>
-            Pick a mood and color that represents how you want to feel when
-            working on this habit.
+            Select a mood and color that represent how you want to feel when
+            working on this habit. This will personalize your experience.
           </Text>
         </View>
 
@@ -227,6 +227,7 @@ const CoverMoodStep: React.FC<OnboardingStepProps> = ({
           <GlassButton
             title="Continue"
             onPress={handleContinue}
+            disabled={!selectedMood || !selectedColor}
             variant="primary"
             size="large"
             style={styles.continueButton}
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: spacing.xl,
-    marginBottom: spacing.l,
+    marginBottom: spacing.s,
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -284,7 +285,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   previewCard: {
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
     padding: spacing.l,
     alignItems: 'center',
   },
@@ -313,14 +314,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   moodCard: {
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
     padding: spacing.l,
   },
   sectionTitle: {
     fontSize: fontSizes.l,
     fontWeight: '600',
     color: colors.textDark,
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
   },
   moodGrid: {
     flexDirection: 'row',
@@ -365,7 +366,7 @@ const styles = StyleSheet.create({
   colorOption: {
     width: colorItemWidth,
     alignItems: 'center',
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
   },
   selectedColorOption: {
     // Add any additional styling for selected color
@@ -396,6 +397,9 @@ const styles = StyleSheet.create({
   },
   continueButton: {
     width: '100%',
+  },
+  disabledButton: {
+    opacity: 0.5,
   },
 });
 

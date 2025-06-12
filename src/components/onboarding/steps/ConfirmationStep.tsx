@@ -169,7 +169,8 @@ const ConfirmationStep: React.FC<ConfirmationStepProps> = ({
           <Text style={styles.celebrationEmoji}>🎉</Text>
           <Text style={styles.celebrationTitle}>You're All Set!</Text>
           <Text style={styles.celebrationSubtitle}>
-            Your habit journey is about to begin
+            Your personalized habit journey is ready to begin. Let's make it
+            happen!
           </Text>
         </Animated.View>
 
@@ -284,7 +285,9 @@ const ConfirmationStep: React.FC<ConfirmationStepProps> = ({
         {/* Complete Button */}
         <Animated.View style={[styles.buttonContainer, buttonAnimatedStyle]}>
           <GlassButton
-            title={loading ? 'Setting up your habit...' : 'Start My Journey!'}
+            title={
+              loading ? '✨ Setting up your habit...' : '🚀 Start My Journey!'
+            }
             onPress={handleComplete}
             disabled={loading}
             variant="primary"
@@ -316,7 +319,7 @@ const AchievementItem: React.FC<AchievementItemProps> = ({
       withSpring(1, {damping: 15, stiffness: 200}),
     );
     opacity.value = withDelay(delay, withTiming(1, {duration: 400}));
-  }, [index]);
+  }, [index, opacity, scale]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],

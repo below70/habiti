@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: spacing.l,
+    backgroundColor: colors.backgroundLight,
   },
   logoContainer: {
     marginBottom: spacing.xl,

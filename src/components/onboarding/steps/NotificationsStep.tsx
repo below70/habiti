@@ -135,7 +135,8 @@ const NotificationsStep: React.FC<OnboardingStepProps> = ({
 
           <Text style={styles.title}>Stay on Track</Text>
           <Text style={styles.subtitle}>
-            Set up reminders to help you build consistency with your new habit.
+            Set up personalized reminders that will help you build consistency
+            and achieve your goals.
           </Text>
         </View>
 

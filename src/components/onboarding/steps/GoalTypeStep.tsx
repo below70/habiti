@@ -98,9 +98,10 @@ const GoalTypeStep: React.FC<OnboardingStepProps> = ({
             <Text style={styles.backButtonText}>← Back</Text>
           </TouchableOpacity>
 
-          <Text style={styles.title}>Choose Your Goal Type</Text>
+          <Text style={styles.title}>What's Your Goal?</Text>
           <Text style={styles.subtitle}>
-            What kind of change do you want to make?
+            Choose the type of habit journey you want to start. Each path is
+            designed to help you succeed.
           </Text>
         </View>
 
@@ -173,11 +174,6 @@ const GoalTypeCard: React.FC<GoalTypeCardProps> = ({
               <Text style={styles.goalTitle}>{goalType.title}</Text>
               <Text style={styles.goalDescription}>{goalType.description}</Text>
             </View>
-            {isSelected && (
-              <View style={styles.checkmark}>
-                <Text style={styles.checkmarkText}>✓</Text>
-              </View>
-            )}
           </View>
 
           <View style={styles.examplesContainer}>
@@ -210,7 +206,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: spacing.xl,
-    marginBottom: spacing.l,
+    marginBottom: spacing.m,
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -237,24 +233,25 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   optionsContainer: {
-    marginBottom: spacing.xl,
+    marginBottom: spacing.l,
   },
   goalTypeCard: {
-    marginBottom: spacing.m,
-    padding: spacing.l,
+    marginBottom: 0,
+    padding: spacing.xs,
+    borderWidth: 2,
+    borderColor: 'transparent',
   },
   selectedCard: {
-    borderWidth: 2,
     borderColor: colors.interactive,
   },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
   },
   goalIcon: {
     fontSize: fontSizes.xxl,
-    marginRight: spacing.m,
+    marginRight: spacing.s,
   },
   titleContainer: {
     flex: 1,
@@ -270,23 +267,10 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     lineHeight: 18,
   },
-  checkmark: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: colors.interactive,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkmarkText: {
-    color: 'white',
-    fontSize: fontSizes.s,
-    fontWeight: 'bold',
-  },
   examplesContainer: {
     borderTopWidth: 1,
     borderTopColor: 'rgba(255, 255, 255, 0.2)',
-    paddingTop: spacing.m,
+    paddingTop: spacing.s,
   },
   examplesTitle: {
     fontSize: fontSizes.s,

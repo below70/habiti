@@ -47,9 +47,19 @@ const WhyStep: React.FC<OnboardingStepProps> = ({data, onNext, onBack}) => {
 
   const handleContinue = () => {
     if (why.trim()) {
+      if (why.trim().length < 10) {
+        Alert.alert(
+          'Tell us more',
+          'Please share a bit more about why this matters to you. A stronger "why" will help you stay motivated.',
+        );
+        return;
+      }
       onNext({why: why.trim()});
     } else {
-      Alert.alert('Please tell us why this matters to you');
+      Alert.alert(
+        'Your motivation matters',
+        'Please tell us why this habit is important to you. This will help you stay committed when challenges arise.',
+      );
     }
   };
 
@@ -67,10 +77,10 @@ const WhyStep: React.FC<OnboardingStepProps> = ({data, onNext, onBack}) => {
             <Text style={styles.backButtonText}>← Back</Text>
           </TouchableOpacity>
 
-          <Text style={styles.title}>Why does this matter?</Text>
+          <Text style={styles.title}>What's Your Why?</Text>
           <Text style={styles.subtitle}>
-            Understanding your motivation will help you stay committed when
-            things get tough.
+            Understanding your deeper motivation will help you stay committed
+            when challenges arise.
           </Text>
         </View>
 
@@ -92,10 +102,12 @@ const WhyStep: React.FC<OnboardingStepProps> = ({data, onNext, onBack}) => {
             multiline
             textAlignVertical="top"
           />
-          <Text style={styles.inputHint}>
-            Be specific and personal. This will be your motivation when you need
-            it most.
-          </Text>
+          <View style={styles.inputFooter}>
+            <Text style={styles.inputHint}>
+              Be specific and personal. This will be your motivation when you
+              need it most.
+            </Text>
+          </View>
         </GlassCard>
 
         {/* Quick Prompts */}
@@ -140,10 +152,7 @@ const WhyStep: React.FC<OnboardingStepProps> = ({data, onNext, onBack}) => {
             disabled={!why.trim()}
             variant="primary"
             size="large"
-            style={[
-              styles.continueButton,
-              !why.trim() && styles.disabledButton,
-            ]}
+            style={styles.continueButton}
           />
         </View>
       </ScrollView>
@@ -240,6 +249,17 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.s,
     color: colors.textMuted,
     fontStyle: 'italic',
+  },
+  inputFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginTop: spacing.s,
+  },
+  characterCount: {
+    fontSize: fontSizes.xs,
+    color: colors.textMuted,
+    fontWeight: '500',
   },
   promptsCard: {
     marginBottom: spacing.m,

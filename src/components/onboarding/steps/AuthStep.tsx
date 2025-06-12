@@ -30,25 +30,26 @@ const AuthStep: React.FC<OnboardingStepProps> = ({data, onNext, onBack}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleGoogleSignIn = async () => {
-    setLoading(true);
-    try {
-      // Note: This would require proper Google Sign-In setup for React Native
-      Alert.alert(
-        'Coming Soon',
-        'Google Sign-In will be available in the next update!',
-      );
+  // TODO: Implement Google Sign-In later
+  // const handleGoogleSignIn = async () => {
+  //   setLoading(true);
+  //   try {
+  //     // Note: This would require proper Google Sign-In setup for React Native
+  //     Alert.alert(
+  //       'Coming Soon',
+  //       'Google Sign-In will be available in the next update!',
+  //     );
 
-      // For now, continue with anonymous data
-      onNext({
-        name: formData.name || 'User',
-      });
-    } catch (error) {
-      Alert.alert('Error', 'Failed to sign in with Google');
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     // For now, continue with anonymous data
+  //     onNext({
+  //       name: formData.name || 'User',
+  //     });
+  //   } catch (error) {
+  //     Alert.alert('Error', 'Failed to sign in with Google');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleEmailSignUp = async () => {
     if (formData.password !== formData.confirmPassword) {
@@ -153,27 +154,6 @@ const AuthStep: React.FC<OnboardingStepProps> = ({data, onNext, onBack}) => {
             <Text style={styles.subtitle}>
               Create an account to save your progress and sync across devices.
             </Text>
-          </View>
-
-          <GlassCard style={styles.optionCard}>
-            <Text style={styles.cardTitle}>Sign up with Google</Text>
-            <Text style={styles.cardDescription}>
-              Quick and secure using your Google account
-            </Text>
-            <GlassButton
-              title="Continue with Google"
-              onPress={handleGoogleSignIn}
-              disabled={loading}
-              variant="primary"
-              size="large"
-              style={styles.optionButton}
-            />
-          </GlassCard>
-
-          <View style={styles.divider}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>or</Text>
-            <View style={styles.dividerLine} />
           </View>
 
           <GlassCard style={styles.optionCard}>

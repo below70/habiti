@@ -73,7 +73,7 @@ const DefineGoalStep: React.FC<OnboardingStepProps> = ({
   );
   const [weeklyTimes, setWeeklyTimes] = useState(data.weeklyTimes || 3);
   const [duration, setDuration] = useState<7 | 14 | 30>(data.duration || 30);
-  const [startDate, setStartDate] = useState(
+  const [startDate, _setStartDate] = useState(
     data.startDate || new Date().toISOString().split('T')[0],
   );
   const [isPublic, setIsPublic] = useState(data.isPublic !== false);
@@ -135,7 +135,11 @@ const DefineGoalStep: React.FC<OnboardingStepProps> = ({
             placeholderTextColor={colors.textMuted}
             multiline
             textAlignVertical="top"
+            maxLength={100}
           />
+          <Text style={styles.characterCount}>
+            {habitName.length}/100 characters
+          </Text>
         </GlassCard>
 
         {/* Popular Suggestions */}
@@ -274,10 +278,7 @@ const DefineGoalStep: React.FC<OnboardingStepProps> = ({
             disabled={!habitName.trim()}
             variant="primary"
             size="large"
-            style={[
-              styles.continueButton,
-              !habitName.trim() && styles.disabledButton,
-            ]}
+            style={styles.continueButton}
           />
         </View>
       </ScrollView>
@@ -295,17 +296,16 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: spacing.m,
-    paddingBottom: spacing.xl,
   },
   header: {
     marginTop: spacing.xl,
-    marginBottom: spacing.l,
+    marginBottom: spacing.s,
   },
   backButton: {
     alignSelf: 'flex-start',
     paddingVertical: spacing.s,
     paddingHorizontal: spacing.m,
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
   },
   backButtonText: {
     fontSize: fontSizes.m,
@@ -326,14 +326,14 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   inputCard: {
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
     padding: spacing.l,
   },
   sectionTitle: {
     fontSize: fontSizes.l,
     fontWeight: '600',
     color: colors.textDark,
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
   },
   textInput: {
     fontSize: fontSizes.m,
@@ -345,8 +345,14 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.3)',
     minHeight: 60,
   },
+  characterCount: {
+    fontSize: fontSizes.xs,
+    color: colors.textMuted,
+    textAlign: 'right',
+    marginTop: spacing.s,
+  },
   suggestionsCard: {
-    marginBottom: spacing.m,
+    marginBottom: spacing.s,
     padding: spacing.l,
   },
   suggestionsGrid: {
@@ -525,6 +531,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     paddingHorizontal: spacing.m,
+    marginBottom: spacing.xl,
   },
   continueButton: {
     width: '100%',
